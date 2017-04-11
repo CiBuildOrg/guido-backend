@@ -36,7 +36,9 @@
     "chai": "^3.5.0",
     "demurgos-web-build-tools": "0.13.0-beta.5",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-cli": "^1.2.2",
     "pre-commit": "^1.2.2",
-    "typescript": "^2.1.1"
+    "typescript": "^2.1.1",
+    "typings": "^2.1.1"
   }
 }
