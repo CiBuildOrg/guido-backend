@@ -1,0 +1,161 @@
+swagger: '2.0'
+info:
+  title: Guido
+  description: PLD-SMART project API
+  version: "0.0.1"
+host: localhost
+schemes:
+  - http
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /comments/{id}:
+    get:
+      summary: Route Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: A
+      responses:
+        200:
+          description: A
+  /events/{id}:
+    get:
+      summary: Ongoing Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: A
+      responses:
+        200:
+          description: A
+  /landmarks/{id}:
+    get:
+      summary: Landmark Data
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: A
+      responses:
+        200:
+          description: A
+  /regions/{id}:
+    get:
+      summary: Regional Data
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: A
+      responses:
+        200:
+          description: A
+  /routes/{id}:
+    get:
+      summary: Route Information
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: UUID of the desired route.
+      responses:
+        200:
+          description: Information about a specific route.
+          schema:
+            $ref: '#/definitions/Route'
+  /waypoints/{id}:
+    get:
+      summary: Route Information
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: UUID of the desired waypoint.
+      responses:
+        200:
+          description: Information about a specific waypoint.
+          schema:
+            $ref: '#/definitions/Waypoint'
+  /users/{id}:
+    get:
+      summary: User Profile
+      description: A
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: A
+      responses:
+        200:
+          description: A
+definitions:
+  Route:
+    type: object
+    properties:
+      route_id:
+        type: string
+        format: uuid
+        description: Unique identifier representing a specific route.
+      title:
+        type: string
+        description: Title of the route.
+      description:
+        type: string
+        description: Description of the route.
+      author:
+        type: string
+        format: uuid
+        description: Author of this route.
+      creation_date:
+        type: string
+        format: 'date-time'
+        description: Date and time of creation of this route.
+      modification_date:
+        type: string
+        format: 'date-time'
+        description: Date and time of the last modification to this route.
+      waypoints:
+        type: array
+        description: Sequence of waypoints which make up this route.
+        items:
+          $ref: '#/definitions/Waypoint'
+      duration:
+        type: integer
+        description: Estimated duration of the route (in minutes).
+      votes:
+        type: integer
+        description: Number of votes in favor of this route.
+      favorites:
+        type: integer
+        description: Number of times this route was favorited.
+      tags:
+        type: array
+        description: Set of user tags describing the route.
+        items:
+          type: string
+  Waypoint:
+    type: object
+    properties:
+      segment_id:
+        type: string
+        format: uuid
+        description: Unique identifier representing a specific waypoint.
