@@ -19,9 +19,7 @@
     ":lint": "gulp :lint"
   },
   "pre-commit": {
-    "run": [
-      ":lint"
-    ]
+    "run": [":lint"]
   },
   "keywords": [],
   "license": "MIT",
