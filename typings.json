@@ -1,0 +1,16 @@
+{
+  "name": "pld-smart",
+  "dependencies": {
+    "bluebird": "registry:npm/bluebird#3.4.1+20160909132857",
+    "cheerio": "registry:npm/cheerio#0.20.0+20160422172414",
+    "lodash": "registry:npm/lodash#4.0.0+20161015015725",
+    "request": "registry:npm/request#2.69.0+20160428223725"
+  },
+  "devDependencies": {
+    "chai": "registry:npm/chai#3.5.0+20160723033700"
+  },
+  "globalDependencies": {},
+  "globalDevDependencies": {
+    "mocha": "registry:env/mocha#2.2.5+20160926180742"
+  }
+}

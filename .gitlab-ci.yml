@@ -1,0 +1,31 @@
+# https://hub.docker.com/r/library/node/
+image: node:7
+
+cache:
+  paths:
+    - node_modules/
+    - typings/
+
+before_script:
+  - npm install -g gulp-cli typings
+  - npm install
+  - npm run-script prepare
+
+stages:
+  - build
+  - test
+
+build-lib:
+  stage: build
+  script:
+    - gulp all:build
+
+check-lint:
+  stage: test
+  script:
+    - gulp :lint
+
+run-tests:
+  stage: test
+  script:
+    - gulp lib-test
