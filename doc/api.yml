@@ -46,10 +46,12 @@ paths:
           required: true
           type: string
           format: uuid
-          description: A
+          description: UUID of the desired landmark.
       responses:
         200:
-          description: A
+          description: Information about a specific landmark.
+          schema:
+            $ref: '#/definitions/Landmark'
   /regions/{id}:
     get:
       summary: Regional Data
@@ -108,6 +110,19 @@ paths:
         200:
           description: A
 definitions:
+  Landmark:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the landmark.
+      latitude:
+        type: number
+        description:  Geographical latitude of the landmark
+      longitude:
+        type: number
+        format: double
+        description: Geographical longitude of the landmark.
   Route:
     type: object
     properties:
@@ -159,3 +174,17 @@ definitions:
         type: string
         format: uuid
         description: Unique identifier representing a specific waypoint.
+      latitude:
+        type: number
+        format: double
+        description: Geographical latitude of the waypoint.
+      longitude:
+        type: number
+        format: double
+        description: Geographical longitude of the waypoint.
+      note:
+        type: string
+        description: Short note (255 characters at most) providing additional information about this waypoint.
+      duration:
+        type: integer
+        description: Suggested amount of time to be spent at this way point (in minutes).
