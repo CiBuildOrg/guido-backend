@@ -1,6 +1,17 @@
-deploy:
-  api_key:
-    secure: ohgRHNOdU7mB0JuZvKf1Vytp3pFf06XXJTTzpCg3HaXx7lEJUVV8MVN4PZ1QXRAjQjsDcv+1dbu+ZoTyy174bBvteselAkY/btx2xIuInvCT6cSJcq685FCAVVHznlLsQTp7gED/vrG5xPpOYD32m/UL7mREZRdP00ahmA+PErD9uwrunXPrT+X2M5aiThtjWAKnoAhloN4ucz8zXOIocgPW1g8SAGeRzIm1i17c4XSRX2ELog34wvAarHseqIDsIGhbDyxpU+X6osnd5825TO40F5wESERCaG5DIiHjSWO8Z0WxLCGxpBMxG2yLRUbksSFtdDpW3mcPtgSulSLAx9RuLXSnLEG84YGD9c2Y94mNN/UrrEXSXK69Vj2vOiXfgjyDMlLxmIjphrngirCRk8dghAotlYSrvqm9o5+oEitEX0tbGj3Cuk2vh6BAAGa0EmYvABhnTHdBIC3HV93xVBaV6nhsU9/Msi/Fu15LvV3PvHXNHZ11Y5rbY6w15ELUImSY34EyjHdbcpRCro/Y0hFfIlJx2ednsdt1/4/zgwgHy9CnsuzH5X61hNjsbvmjy8QaZZjRxhzEQq71cU3lFtzTG/VVuLqGXVzq+SAzBeLp8p6PqMmSPlMmK/aXVbNGEYt0i+TquMSl4fDoVsx1Ast0LolkVrAUzHG/5KJujxE=
-  provider: heroku
-  app: guido-backend
-  skip_cleanup: true
+language: node_js
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+node_js:
+- stable
+before_install:
+- npm install -g typings gulp-cli npm typedoc
+script:
+- npm test
+#deploy:
+#  api_key:
+#    secure: ohgRHNOdU7mB0JuZvKf1Vytp3pFf06XXJTTzpCg3HaXx7lEJUVV8MVN4PZ1QXRAjQjsDcv+1dbu+ZoTyy174bBvteselAkY/btx2xIuInvCT6cSJcq685FCAVVHznlLsQTp7gED/vrG5xPpOYD32m/UL7mREZRdP00ahmA+PErD9uwrunXPrT+X2M5aiThtjWAKnoAhloN4ucz8zXOIocgPW1g8SAGeRzIm1i17c4XSRX2ELog34wvAarHseqIDsIGhbDyxpU+X6osnd5825TO40F5wESERCaG5DIiHjSWO8Z0WxLCGxpBMxG2yLRUbksSFtdDpW3mcPtgSulSLAx9RuLXSnLEG84YGD9c2Y94mNN/UrrEXSXK69Vj2vOiXfgjyDMlLxmIjphrngirCRk8dghAotlYSrvqm9o5+oEitEX0tbGj3Cuk2vh6BAAGa0EmYvABhnTHdBIC3HV93xVBaV6nhsU9/Msi/Fu15LvV3PvHXNHZ11Y5rbY6w15ELUImSY34EyjHdbcpRCro/Y0hFfIlJx2ednsdt1/4/zgwgHy9CnsuzH5X61hNjsbvmjy8QaZZjRxhzEQq71cU3lFtzTG/VVuLqGXVzq+SAzBeLp8p6PqMmSPlMmK/aXVbNGEYt0i+TquMSl4fDoVsx1Ast0LolkVrAUzHG/5KJujxE=
+#  provider: heroku
+#  app: guido-backend
+#  skip_cleanup: true
