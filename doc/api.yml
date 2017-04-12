@@ -126,7 +126,7 @@ definitions:
   Route:
     type: object
     properties:
-      route_id:
+      id:
         type: string
         format: uuid
         description: Unique identifier representing a specific route.
@@ -137,9 +137,7 @@ definitions:
         type: string
         description: Description of the route.
       author:
-        type: string
-        format: uuid
-        description: Author of this route.
+        $ref: '#/definitions/User'
       creation_date:
         type: string
         format: 'date-time'
@@ -167,10 +165,17 @@ definitions:
         description: Set of user tags describing the route.
         items:
           type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: Unique identifier representing a specific user.
   Waypoint:
     type: object
     properties:
-      segment_id:
+      id:
         type: string
         format: uuid
         description: Unique identifier representing a specific waypoint.
