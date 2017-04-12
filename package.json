@@ -19,20 +19,26 @@
     ":lint": "gulp :lint"
   },
   "pre-commit": {
-    "run": [":lint"]
+    "run": [
+      ":lint"
+    ]
   },
   "keywords": [],
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.6",
+    "bookshelf": "^0.10.3",
     "cheerio": "^0.22.0",
     "express": "^4.15.2",
+    "knex": "^0.12.9",
     "lodash": "^4.17.2",
     "morgan": "^1.8.1",
     "request": "^2.75.0"
   },
   "devDependencies": {
+    "@types/bookshelf": "^0.8.38",
     "@types/express": "^4.0.35",
+    "@types/knex": "0.0.44",
     "@types/morgan": "^1.7.32",
     "@types/node": "^7.0.12",
     "chai": "^3.5.0",
