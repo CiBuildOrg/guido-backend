@@ -2,7 +2,8 @@ import express = require("express");
 import {Server} from "http";
 import morgan = require("morgan");
 import {Api} from "../lib/api";
-import {dbHost, dbName, dbPassword, dbUser} from "../lib/config";
+import {dbHost, dbName, dbPassword, dbUser} from "./config";
+import {populateDb} from "./db";
 import {createApiRouter} from "./routes";
 
 async function run() {
@@ -12,10 +13,10 @@ async function run() {
     dbName: dbName,
     dbPassword: dbPassword,
     dbUser: dbUser,
-    resetDb: false
+    resetDb: true
   });
 
-  await populateDb();
+  await populateDb(api.context.models);
 
   app.use(morgan("dev"));
   app.use(await createApiRouter(api));

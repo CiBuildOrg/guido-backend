@@ -1,16 +1,10 @@
-import {Sequelize} from "sequelize";
-import {db} from "../lib/db";
-import {Route, routeModel, User, userModel} from "../lib/models";
+import {Models, Route, User} from "../lib/interfaces/models/index";
 
-export async function initDb(force: boolean = false): Promise<void> {
-  await db.sync({force: force});
-}
-
-export async function populateDb(): Promise<void> {
-  const user: User = await userModel.create({
+export async function populateDb(models: Models): Promise<void> {
+  const user: User = await models.user.create({
     username: "Guido"
   });
-  const route: Route = await routeModel.create({
+  const route: Route = await models.route.create({
     title: "Test Route",
     description: "A beautiful test route.",
     duration: 68

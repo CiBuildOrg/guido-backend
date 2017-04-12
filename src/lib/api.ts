@@ -1,6 +1,8 @@
+import Sequelize = require("sequelize");
 import {getRoute, getRoutes} from "./api/index";
-import {db} from "./db";
 import * as interfaces from "./interfaces/index";
+import {Models} from "./interfaces/models/index";
+import {define as defineModels} from "./models";
 
 export interface CreateApiOptions {
   dbHost: string;
@@ -12,10 +14,23 @@ export interface CreateApiOptions {
 
 export class Api {
   static async create(options: CreateApiOptions): Promise<Api> {
+    const db: Sequelize.Sequelize = new Sequelize(
+      options.dbName,
+      options.dbUser,
+      options.dbUser,
+      {
+        host: options.dbHost,
+        dialect: "postgres"
+      }
+    );
+
+    const models: Models = defineModels(db);
+
     if (options.resetDb) {
-      db.sync({force: true});
+      await db.sync({force: true});
     }
-    return new Api({db: db});
+
+    return new Api({db, models});
   }
 
   context: interfaces.Context;
