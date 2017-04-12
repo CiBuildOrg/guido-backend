@@ -1,3 +1,3 @@
 export async function getUsers(): Promise<number[]> {
-  throw new Error("not implemented");
+  return [1, 2, 3];
 }
