@@ -1,9 +1,8 @@
-export const dbHost: string = "localhost";
+if (!("DATABASE_URL" in process.env)) {
+  console.error("Missing environment variable: `DATABASE_URL`");
+  process.exit(1);
+}
 
-export const dbName: string = "guido";
-
-export const dbUser: string = "postgres";
-
-export const dbPassword: string = "postgres";
+export const databaseUrl: string = process.env.DATABASE_URL;
 
 export const httpPort: number = process.env.PORT || 8080;

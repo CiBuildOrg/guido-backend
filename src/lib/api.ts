@@ -5,24 +5,13 @@ import {Models, Route} from "./interfaces/models/index";
 import {define as defineModels} from "./models";
 
 export interface CreateApiOptions {
-  dbHost: string;
-  dbName: string;
-  dbPassword: string;
-  dbUser: string;
+  databaseUrl: string;
   resetDb: boolean;
 }
 
 export class Api {
   static async create(options: CreateApiOptions): Promise<Api> {
-    const db: Sequelize.Sequelize = new Sequelize(
-      options.dbName,
-      options.dbUser,
-      options.dbUser,
-      {
-        host: options.dbHost,
-        dialect: "postgres"
-      }
-    );
+    const db: Sequelize.Sequelize = new Sequelize(options.databaseUrl);
 
     const models: Models = defineModels(db);
 
