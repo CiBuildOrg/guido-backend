@@ -10,9 +10,13 @@ before_install:
 script:
 - npm test
 - chmod +x ./travis/deploy-gh-pages.sh && ./travis/deploy-gh-pages.sh
-#deploy:
-#  api_key:
-#    secure: ohgRHNOdU7mB0JuZvKf1Vytp3pFf06XXJTTzpCg3HaXx7lEJUVV8MVN4PZ1QXRAjQjsDcv+1dbu+ZoTyy174bBvteselAkY/btx2xIuInvCT6cSJcq685FCAVVHznlLsQTp7gED/vrG5xPpOYD32m/UL7mREZRdP00ahmA+PErD9uwrunXPrT+X2M5aiThtjWAKnoAhloN4ucz8zXOIocgPW1g8SAGeRzIm1i17c4XSRX2ELog34wvAarHseqIDsIGhbDyxpU+X6osnd5825TO40F5wESERCaG5DIiHjSWO8Z0WxLCGxpBMxG2yLRUbksSFtdDpW3mcPtgSulSLAx9RuLXSnLEG84YGD9c2Y94mNN/UrrEXSXK69Vj2vOiXfgjyDMlLxmIjphrngirCRk8dghAotlYSrvqm9o5+oEitEX0tbGj3Cuk2vh6BAAGa0EmYvABhnTHdBIC3HV93xVBaV6nhsU9/Msi/Fu15LvV3PvHXNHZ11Y5rbY6w15ELUImSY34EyjHdbcpRCro/Y0hFfIlJx2ednsdt1/4/zgwgHy9CnsuzH5X61hNjsbvmjy8QaZZjRxhzEQq71cU3lFtzTG/VVuLqGXVzq+SAzBeLp8p6PqMmSPlMmK/aXVbNGEYt0i+TquMSl4fDoVsx1Ast0LolkVrAUzHG/5KJujxE=
-#  provider: heroku
-#  app: guido-backend
-#  skip_cleanup: true
+before_deploy:
+- npm run prestart
+deploy:
+  provider: heroku
+  on:
+    branch: production
+  app: guido-backend
+  skip_cleanup: true
+  api_key:
+    secure: K9NyA54zkXCINEhHfyacBUsVKZ63OO/QqZJpJqWLDvTJbBE+qn+0SE5zDTdZZ7PDi5z4vrAsWegFd2fldc00vMas5DpOHgpey907Z+Wq9KDF2hTC9GUHD+N5cP3Wp3Z7MYkfpraDzQbel5BbooeU33afP5rMWkbX3l2GR35WJuMXbVqlOnOa1SQcACoeNJroWBEVsqnCtc+zsRmMQwkiKZbP3hokTxDXKOXCkUNZ1jycRbNT/tAQtZhH5rkwoHTJx5elDQMCFWBH6tvAwhFaTYInkFrHpPU5gWuXSRve6MNgkNYLCCSZ73PJsDp7DcuIHTRYXhzGhV6NJPYzRFTqoumQ8bdwqJ3FQfsU8Q8N5eFU0aGw+bcaulC5WrQkvP0TlTAP5WbRTMo7vN6sZVG2pAx5/AyXK4ZH2r2PP91ivPs1Iyimuf3AaZVfOFsq0BwGQczt3A0SMvNrM1tvsrmjEj/NzT1YU39uH5eU0tc054cP8juHnv7H1fYEqYWOyY56/1I10g6SVePBjIb0VvANypILhTqJFMhL/ZIVU6vpryS84ITzz4OsXUob4x0xoIwCUqY0PcRvZcDRrj1JvHs5fGRTeLhUMj0huAUplRKmv6OL82IKhQGKfo/KvlNGl2BFANF6FFNd5o7f1ubNACQ0iGL/OLjzqXUnYfob3Q/9t8M=
