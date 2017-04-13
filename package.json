@@ -11,12 +11,14 @@
     "url": "https://github.com/o10if/pld-smart-backend.git"
   },
   "scripts": {
+    "gh-pages": "rm -rf build/gh-pages/ && typedoc --includeDeclarations --out build/gh-pages/ --module commonjs --target es2015 --exclude '**/*.spec.ts' --mode modules --name Guido --readme README.md src/lib/ && touch build/gh-pages/.nojekyll && cp -r build/gh-pages/. dist/gh-pages/",
+    "lint": "gulp :lint",
     "prepare": "typings install && gulp all:tsconfig.json && gulp :tslint.json && gulp all:dist",
-    "test": "gulp :lint && gulp lib-test",
+    "prepublishOnly": "npm test",
     "prestart": "gulp main:build",
     "start": "node build/main/main/main.js",
-    "prepublishOnly": "npm test",
-    ":lint": "gulp :lint"
+    "test": "gulp :lint && gulp lib-test",
+    "typedoc": "typedoc --includeDeclarations --out doc/api/ --module commonjs --target es2015 --exclude '**/*.spec.ts' --mode modules --name Guido --readme README.md src/lib/"
   },
   "pre-commit": {
     "run": [
@@ -46,6 +48,7 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cli": "^1.2.2",
     "pre-commit": "^1.2.2",
+    "typedoc": "^0.5.10",
     "typescript": "^2.1.1",
     "typings": "^2.1.1"
   }
