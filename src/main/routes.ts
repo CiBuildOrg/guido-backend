@@ -1,8 +1,7 @@
 import {Request, Response, Router} from "express";
 
 import {Api} from "../lib/api";
-import {Route, User, Waypoint} from "../lib/interfaces/models/index";
-import {Route as PlainRoute, User as PlainUser, Waypoint as PlainWaypoint} from "./interfaces/index";
+import {Route, Tag, User, Waypoint} from "../lib/interfaces/models/index";
 import * as plain from "./interfaces/index";
 
 export async function createApiRouter(api: Api): Promise<Router> {
@@ -45,10 +44,18 @@ async function serializeRoute(route: Route, withWaypoints: boolean): Promise<pla
     duration: await route.duration,
     likes: (await route.getLikes()).length,
     favorites: (await route.getFavorites()).length,
-    tags: []
+    tags: await serializeTags(await route.getTags())
   };
   if (withWaypoints) {
     result.waypoints = await serializeWaypoints(await route.getWaypoints());
+  }
+  return result;
+}
+
+async function serializeTags(tags: Tag[]): Promise<string[]> {
+  const result: string[] = [];
+  for (const tag of tags) {
+    result.push(tag.value);
   }
   return result;
 }
@@ -61,7 +68,7 @@ async function serializeUser(author: User): Promise<plain.User> {
 }
 
 async function serializeWaypoints(waypoints: Waypoint[]): Promise<plain.Waypoint[]> {
-  const result: PlainWaypoint[] = [];
+  const result: plain.Waypoint[] = [];
   for (const waypoint of waypoints) {
     result.push({
       id: waypoint.id,

@@ -1,3 +1,4 @@
+import {Tag} from "./tag";
 import {User} from "./user";
 import {Waypoint} from "./waypoint";
 
@@ -33,6 +34,10 @@ export interface Route {
    * @return A promise to the author.
    */
   getAuthor(): Promise<User>;
+
+  addTags(tag: Tag): Promise<any>;
+
+  getTags(): Promise<Tag[]>;
 
   /**
    * Sets the author of a route.
