@@ -1,13 +1,13 @@
 export interface Route {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  creation_date: Date;
+  modification_date: Date;
   title: string;
   description: string;
   author: {};
-  waypoints: any[];
+  waypoints?: any[];
   duration: number;
-  votes: number;
+  likes: number;
   favorites: number;
   tags: string[];
 }

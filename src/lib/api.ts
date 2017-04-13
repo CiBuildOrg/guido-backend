@@ -1,7 +1,7 @@
 import Sequelize = require("sequelize");
 import {getRoute, getRoutes} from "./api/index";
-import * as interfaces from "./interfaces/index";
-import {Models} from "./interfaces/models/index";
+import {Context} from "./interfaces/context";
+import {Models, Route} from "./interfaces/models/index";
 import {define as defineModels} from "./models";
 
 export interface CreateApiOptions {
@@ -33,17 +33,17 @@ export class Api {
     return new Api({db, models});
   }
 
-  context: interfaces.Context;
+  context: Context;
 
-  constructor(context: interfaces.Context) {
+  constructor(context: Context) {
     this.context = context;
   }
 
-  async getRoute(routeId: string): Promise<interfaces.Route> {
+  async getRoute(routeId: string): Promise<Route> {
     return getRoute(this.context, routeId);
   }
 
-  async getRoutes(): Promise<interfaces.Route[]> {
+  async getRoutes(): Promise<Route[]> {
     return getRoutes(this.context);
   }
 }

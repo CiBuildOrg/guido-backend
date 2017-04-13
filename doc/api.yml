@@ -170,9 +170,9 @@ definitions:
       duration:
         type: integer
         description: Estimated duration of the route (in minutes).
-      votes:
+      likes:
         type: integer
-        description: Number of votes in favor of this route.
+        description: Number of times this route was liked.
       favorites:
         type: integer
         description: Number of times this route was favorited.
@@ -213,9 +213,9 @@ definitions:
       duration:
         type: integer
         description: Estimated duration of the route (in minutes).
-      votes:
+      likes:
         type: integer
-        description: Number of votes in favor of this route.
+        description: Number of times this route was liked.
       favorites:
         type: integer
         description: Number of times this route was favorited.

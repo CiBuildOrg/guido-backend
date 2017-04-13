@@ -18,6 +18,7 @@ async function run() {
 
   await populateDb(api.context.models);
 
+  app.set("json spaces", 2);
   app.use(morgan("dev"));
   app.use(await createApiRouter(api));
 
