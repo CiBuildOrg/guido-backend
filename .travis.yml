@@ -5,11 +5,17 @@ notifications:
     on_failure: never
 node_js:
 - stable
+services:
+- postgresql
 before_install:
 - npm install -g typings gulp-cli npm typedoc
+before_script:
+  - psql -c "CREATE DATABASE guidodb;" -U postgres
 script:
+- set -e
+- export DATABASE_URL="postgres://postgres@localhost:5432/guidodb"
 - npm test
-- chmod +x ./travis/deploy-gh-pages.sh && ./travis/deploy-gh-pages.sh
+- ./travis/deploy-gh-pages.sh
 before_deploy:
 - npm run prestart
 deploy:
