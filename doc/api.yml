@@ -5,22 +5,22 @@ info:
   version: "0.0.1"
 host: localhost
 schemes:
-  - http
-  - https
+- http
+- https
 basePath: /v1
 produces:
-  - application/json
+- application/json
 paths:
   /comments/{id}:
     get:
       summary: Route Comments
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: A
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: A
       responses:
         200:
           description: A
@@ -28,12 +28,12 @@ paths:
     get:
       summary: Ongoing Events
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: A
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: A
       responses:
         200:
           description: A
@@ -41,12 +41,12 @@ paths:
     get:
       summary: Landmark Data
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: UUID of the desired landmark.
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: UUID of the desired landmark.
       responses:
         200:
           description: Information about a specific landmark.
@@ -56,12 +56,12 @@ paths:
     get:
       summary: Regional Data
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: A
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: A
       responses:
         200:
           description: A
@@ -69,27 +69,46 @@ paths:
     get:
       summary: Route Information
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: UUID of the desired route.
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: UUID of the desired route.
       responses:
         200:
           description: Information about a specific route.
           schema:
             $ref: '#/definitions/Route'
+    post:
+      summary: Update Route Information
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: UUID of the desired route.
+      responses:
+        200:
+          description: Route was successfully updated.
+          schema:
+            type: object
+            description: Response string.
+            properties:
+              status:
+                type: string
+                description: A status string.
   /waypoints/{id}:
     get:
-      summary: Route Information
+      summary: Waypoint Information
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: UUID of the desired waypoint.
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: UUID of the desired waypoint.
       responses:
         200:
           description: Information about a specific waypoint.
@@ -98,20 +117,21 @@ paths:
   /users/{id}:
     get:
       summary: User Profile
-      description: A
+      description: Summary of the user's public details.
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: A
+      - name: id
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: UUID of the desired user.
       responses:
         200:
-          description: A
+          description: User summary.
 definitions:
   Landmark:
     type: object
+    description: Geographical point of interest.
     properties:
       name:
         type: string
@@ -125,6 +145,7 @@ definitions:
         description: Geographical longitude of the landmark.
   Route:
     type: object
+    description: Complete description of a route.
     properties:
       id:
         type: string
@@ -146,11 +167,49 @@ definitions:
         type: string
         format: 'date-time'
         description: Date and time of the last modification to this route.
+      duration:
+        type: integer
+        description: Estimated duration of the route (in minutes).
+      votes:
+        type: integer
+        description: Number of votes in favor of this route.
+      favorites:
+        type: integer
+        description: Number of times this route was favorited.
+      tags:
+        type: array
+        description: Set of user tags describing the route.
+        items:
+          type: string
       waypoints:
         type: array
         description: Sequence of waypoints which make up this route.
         items:
           $ref: '#/definitions/Waypoint'
+  RouteInfo:
+    type: object
+    description: Partial description of a route, which omits listing waypoints.
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: Unique identifier representing a specific route.
+      title:
+        type: string
+        description: Title of the route.
+      description:
+        type: string
+        description: Description of the route.
+      author:
+        $ref: '#/definitions/User'
+      creation_date:
+        type: string
+        format: 'date-time'
+        description: Date and time of creation of this route.
+      modification_date:
+        type: string
+        format: 'date-time'
+        description: Date and time of the last modification to this route.
       duration:
         type: integer
         description: Estimated duration of the route (in minutes).
@@ -167,13 +226,26 @@ definitions:
           type: string
   User:
     type: object
+    description: User of Guido.
     properties:
       id:
         type: string
         format: uuid
         description: Unique identifier representing a specific user.
+      username:
+        type: string
+        description: Alphanumeric identifier for the user.
+      favorites:
+        type: array
+        items:
+          $ref: '#/definitions/RouteInfo'
+      likes:
+        type: array
+        items:
+          $ref: '#/definitions/RouteInfo'
   Waypoint:
     type: object
+    description: Geographical point on a route.
     properties:
       id:
         type: string

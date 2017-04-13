@@ -36,8 +36,10 @@ export function define(db: Sequelize.Sequelize): Models {
 
   route.hasMany(waypoint, {as: "waypoints"});
   route.hasOne(user, {as: "author"});
-  route.belongsToMany(user, {as: "favorites", through: "favorite_routes"});
-  user.belongsToMany(route, {as: "favorites", through: "favorite_routes"});
+  route.belongsToMany(user, {as: "favorites", through: "routes_favorites"});
+  route.belongsToMany(user, {as: "likes", through: "routes_likes"});
+  user.belongsToMany(route, {as: "favorites", through: "routes_favorites"});
+  user.belongsToMany(route, {as: "likes", through: "routes_likes"});
 
   return {route, user, waypoint};
 }
