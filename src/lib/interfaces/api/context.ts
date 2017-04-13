@@ -1,5 +1,5 @@
 import {Sequelize} from "sequelize";
-import {Models} from "./models/index";
+import {Models} from "../sequelize/index";
 
 export interface Context {
   db: Sequelize;

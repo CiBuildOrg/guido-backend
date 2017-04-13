@@ -1,4 +1,4 @@
-import {Models, Route, Tag, User} from "../lib/interfaces/models/index";
+import {Models, Route, Tag, User} from "../lib/interfaces/sequelize/index";
 
 export async function populateDb(models: Models): Promise<void> {
   const user: User = await models.user.create({

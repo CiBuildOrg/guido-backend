@@ -1,18 +1,8 @@
 import * as Sequelize from "sequelize";
-import {
-  Models,
-  Route,
-  RouteModel,
-  Tag,
-  TagModel,
-  User,
-  UserModel,
-  Waypoint,
-  WaypointModel
-} from "./interfaces/models/index";
+import * as sequelizeInterfaces from "./interfaces/sequelize/index";
 
-export function define(db: Sequelize.Sequelize): Models {
-  const route: RouteModel = db.define<Route, any>("route", {
+export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
+  const route: sequelizeInterfaces.RouteModel = db.define<sequelizeInterfaces.Route, any>("route", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
@@ -23,11 +13,11 @@ export function define(db: Sequelize.Sequelize): Models {
     duration: Sequelize.INTEGER
   });
 
-  const tag: TagModel = db.define<Tag, any>("tag", {
+  const tag: sequelizeInterfaces.TagModel = db.define<sequelizeInterfaces.Tag, any>("tag", {
     value: Sequelize.STRING
   });
 
-  const user: UserModel = db.define<User, any>("user", {
+  const user: sequelizeInterfaces.UserModel = db.define<sequelizeInterfaces.User, any>("user", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
@@ -36,7 +26,7 @@ export function define(db: Sequelize.Sequelize): Models {
     username: Sequelize.STRING
   });
 
-  const waypoint: WaypointModel = db.define<Waypoint, any>("waypoint", {
+  const waypoint: sequelizeInterfaces.WaypointModel = db.define<sequelizeInterfaces.Waypoint, any>("waypoint", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,

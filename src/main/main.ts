@@ -2,9 +2,9 @@ import express = require("express");
 import {Server} from "http";
 import morgan = require("morgan");
 import {Api} from "../lib/api";
+import {createApiRouter} from "./api-router";
 import {databaseUrl, httpPort} from "./config";
 import {populateDb} from "./db";
-import {createApiRouter} from "./routes";
 
 async function run() {
   const app: express.Application = express();

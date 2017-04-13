@@ -1,7 +1,11 @@
+import * as Sequelize from "sequelize";
 import {Tag} from "./tag";
 import {User} from "./user";
 import {Waypoint} from "./waypoint";
 
+/**
+ * Sequelize instance of a Route
+ */
 export interface Route {
   id: string;
   title: string;
@@ -48,3 +52,5 @@ export interface Route {
 
   getWaypoints(): Promise<Waypoint[]>;
 }
+
+export type RouteModel = Sequelize.Model<Route, any>;

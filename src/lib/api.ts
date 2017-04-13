@@ -1,7 +1,7 @@
 import Sequelize = require("sequelize");
 import {getRoute, getRoutes} from "./api/index";
-import {Context} from "./interfaces/context";
-import {Models, Route} from "./interfaces/models/index";
+import * as api from "./interfaces/api/index";
+import {Models} from "./interfaces/sequelize/index";
 import {define as defineModels} from "./models";
 
 export interface CreateApiOptions {
@@ -22,17 +22,25 @@ export class Api {
     return new Api({db, models});
   }
 
-  context: Context;
+  context: api.Context;
 
-  constructor(context: Context) {
+  constructor(context: api.Context) {
     this.context = context;
   }
 
-  async getRoute(routeId: string): Promise<Route> {
+  /**
+   * Retrieves the route `routeId`.
+   *
+   * If the route is not found, return `null`.
+   *
+   * @param routeId
+   * @returns {Promise<ApiRoute>}
+   */
+  async getRoute(routeId: string): Promise<api.Route | null> {
     return getRoute(this.context, routeId);
   }
 
-  async getRoutes(): Promise<Route[]> {
+  async getRoutes(): Promise<api.Route[]> {
     return getRoutes(this.context);
   }
 }
