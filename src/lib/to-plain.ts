@@ -34,18 +34,17 @@ export async function toPlainRoute(route: any, partial: any): Promise<any> {
   const favorites: number = (await route.getFavorites()).length;
   const tags: string[] = await toPlainTags(await route.getTags());
 
+  const partialRoute: api.PartialRoute = {
+    id, title, description, author, creationDate,
+    modificationDate, duration, likes, favorites, tags
+  };
+
   if (partial) {
-    return {
-      id, title, description, author, creationDate,
-      modificationDate, duration, likes, favorites, tags
-    };
+    return partialRoute;
   } else {
     const comments: api.Comment[] = await toPlainComments(await route.getComments());
     const waypoints: api.Waypoint[] = await toPlainWaypoints(await route.getWaypoints());
-    return {
-      id, title, description, author, creationDate,
-      modificationDate, duration, likes, favorites, tags, comments, waypoints
-    };
+    return {...partialRoute, comments, waypoints};
   }
 }
 
