@@ -1,10 +1,12 @@
+import {User} from "./user";
+
 export interface PartialRoute {
   id: string;
   creationDate: Date;
   modificationDate: Date;
   title: string;
   description: string;
-  author: {};
+  author: User;
   duration: number;
   likes: number;
   favorites: number;

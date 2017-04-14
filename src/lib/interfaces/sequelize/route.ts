@@ -1,4 +1,5 @@
 import * as Sequelize from "sequelize";
+import {Comment} from "./comment";
 import {Tag} from "./tag";
 import {User} from "./user";
 import {Waypoint} from "./waypoint";
@@ -13,6 +14,24 @@ export interface Route {
   duration: number;
   createdAt: Date;
   updatedAt: Date;
+
+  /**
+   * Gets the user who created a route.
+   *
+   * @return A promise to the author.
+   */
+  getAuthor(): Promise<User>;
+
+  /**
+   * Sets the author of a route.
+   *
+   * @param author The user who created the route.
+   */
+  setAuthor(author: User): Promise<any>;
+
+  addComments(comment: Comment): Promise<any>;
+
+  getComments(): Promise<Comment>[];
 
   /**
    * Adds a single user favorite to a route.
@@ -32,23 +51,9 @@ export interface Route {
 
   getLikes(): Promise<User>[];
 
-  /**
-   * Gets the user who created a route.
-   *
-   * @return A promise to the author.
-   */
-  getAuthor(): Promise<User>;
-
   addTags(tag: Tag): Promise<any>;
 
   getTags(): Promise<Tag[]>;
-
-  /**
-   * Sets the author of a route.
-   *
-   * @param author The user who created the route.
-   */
-  setAuthor(author: User): Promise<any>;
 
   getWaypoints(): Promise<Waypoint[]>;
 }

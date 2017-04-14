@@ -1,6 +1,17 @@
 import * as api from "./interfaces/api/index";
 import * as sequelize from "./interfaces/sequelize/index";
 
+export async function toPlainComment(comment: sequelize.Comment): Promise<api.Comment> {
+  const id: string = comment.id;
+  const author: api.User = await toPlainUser(await comment.getAuthor());
+  const text: string = comment.text;
+  return {id, author, text};
+}
+
+export async function toPlainComments(comments: sequelize.Comment[]): Promise<api.Comment[]> {
+  return Promise.all(comments.map((comment: sequelize.Comment): Promise<api.Comment> => toPlainComment(comment)));
+}
+
 export async function toPlainLandmark(landmark: sequelize.Landmark): Promise<api.Landmark> {
   const id: string = landmark.id;
   const title: string = landmark.title;
@@ -29,10 +40,11 @@ export async function toPlainRoute(route: any, partial: any): Promise<any> {
       modificationDate, duration, likes, favorites, tags
     };
   } else {
+    const comments: api.Comment[] = await toPlainComments(await route.getComments());
     const waypoints: api.Waypoint[] = await toPlainWaypoints(await route.getWaypoints());
     return {
       id, title, description, author, creationDate,
-      modificationDate, duration, likes, favorites, tags, waypoints
+      modificationDate, duration, likes, favorites, tags, comments, waypoints
     };
   }
 }

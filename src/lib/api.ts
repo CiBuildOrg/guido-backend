@@ -48,7 +48,7 @@ export class Api {
     return api.getRoute(this.context, routeId);
   }
 
-  async getRoutes(): Promise<apiInterfaces.Route[]> {
+  async getRoutes(): Promise<apiInterfaces.PartialRoute[]> {
     return api.getRoutes(this.context);
   }
 }

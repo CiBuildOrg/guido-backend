@@ -2,6 +2,15 @@ import * as Sequelize from "sequelize";
 import * as sequelizeInterfaces from "./interfaces/sequelize/index";
 
 export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
+  const comment: sequelizeInterfaces.CommentModel = db.define<sequelizeInterfaces.Comment, any>("comment", {
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true
+    },
+    text: Sequelize.STRING
+  });
+
   const landmark: sequelizeInterfaces.LandmarkModel = db.define<sequelizeInterfaces.Landmark, any>("landmark", {
     id: {
       type: Sequelize.UUID,
@@ -49,13 +58,16 @@ export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
     duration: Sequelize.INTEGER
   });
 
+  comment.belongsTo(user, {as: "author"});
+  landmark.hasMany(comment, {as: "comments"});
+  route.hasMany(comment, {as: "comments"});
   route.hasMany(tag, {as: "tags"});
   route.hasMany(waypoint, {as: "waypoints"});
-  route.hasOne(user, {as: "author"});
+  route.belongsTo(user, {as: "author"});
   route.belongsToMany(user, {as: "favorites", through: "routes_favorites"});
   route.belongsToMany(user, {as: "likes", through: "routes_likes"});
   user.belongsToMany(route, {as: "favorites", through: "routes_favorites"});
   user.belongsToMany(route, {as: "likes", through: "routes_likes"});
 
-  return {landmark, route, tag, user, waypoint};
+  return {comment, landmark, route, tag, user, waypoint};
 }
