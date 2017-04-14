@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Models | Guido</title>
+	<title>PartialRoute | Guido</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_src_lib_interfaces_models_index_.html">&quot;src/lib/interfaces/models/index&quot;</a>
+					<a href="../modules/_src_lib_interfaces_api_route_.html">&quot;src/lib/interfaces/api/route&quot;</a>
 				</li>
 				<li>
-					<a href="_src_lib_interfaces_models_index_.models.html">Models</a>
+					<a href="_src_lib_interfaces_api_route_.partialroute.html">PartialRoute</a>
 				</li>
 			</ul>
-			<h1>Interface Models</h1>
+			<h1>Interface PartialRoute</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Models</span>
+						<span class="target">PartialRoute</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="_src_lib_interfaces_api_route_.route.html" class="tsd-signature-type">Route</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -84,10 +89,16 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_models_index_.models.html#route" class="tsd-kind-icon">route</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_models_index_.models.html#tag" class="tsd-kind-icon">tag</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_models_index_.models.html#user" class="tsd-kind-icon">user</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_models_index_.models.html#waypoint" class="tsd-kind-icon">waypoint</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#author" class="tsd-kind-icon">author</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#creationdate" class="tsd-kind-icon">creation<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#duration" class="tsd-kind-icon">duration</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#favorites" class="tsd-kind-icon">favorites</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#likes" class="tsd-kind-icon">likes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#modificationdate" class="tsd-kind-icon">modification<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#tags" class="tsd-kind-icon">tags</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_interfaces_api_route_.partialroute.html#title" class="tsd-kind-icon">title</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,42 +107,102 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="route" class="tsd-anchor"></a>
-					<h3>route</h3>
-					<div class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">:</span> <a href="../modules/_src_lib_interfaces_models_index_.html#routemodel" class="tsd-signature-type">RouteModel</a></div>
+					<a name="author" class="tsd-anchor"></a>
+					<h3>author</h3>
+					<div class="tsd-signature tsd-kind-icon">author<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__type</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/6ae75f6/src/lib/interfaces/models/index.ts#L13">src/lib/interfaces/models/index.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L7">src/lib/interfaces/api/route.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="tag" class="tsd-anchor"></a>
-					<h3>tag</h3>
-					<div class="tsd-signature tsd-kind-icon">tag<span class="tsd-signature-symbol">:</span> <a href="../modules/_src_lib_interfaces_models_index_.html#tagmodel" class="tsd-signature-type">TagModel</a></div>
+					<a name="creationdate" class="tsd-anchor"></a>
+					<h3>creation<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">creation<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/6ae75f6/src/lib/interfaces/models/index.ts#L14">src/lib/interfaces/models/index.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L3">src/lib/interfaces/api/route.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="user" class="tsd-anchor"></a>
-					<h3>user</h3>
-					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <a href="../modules/_src_lib_interfaces_models_index_.html#usermodel" class="tsd-signature-type">UserModel</a></div>
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/6ae75f6/src/lib/interfaces/models/index.ts#L15">src/lib/interfaces/models/index.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L6">src/lib/interfaces/api/route.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="waypoint" class="tsd-anchor"></a>
-					<h3>waypoint</h3>
-					<div class="tsd-signature tsd-kind-icon">waypoint<span class="tsd-signature-symbol">:</span> <a href="../modules/_src_lib_interfaces_models_index_.html#waypointmodel" class="tsd-signature-type">WaypointModel</a></div>
+					<a name="duration" class="tsd-anchor"></a>
+					<h3>duration</h3>
+					<div class="tsd-signature tsd-kind-icon">duration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/6ae75f6/src/lib/interfaces/models/index.ts#L16">src/lib/interfaces/models/index.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L8">src/lib/interfaces/api/route.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="favorites" class="tsd-anchor"></a>
+					<h3>favorites</h3>
+					<div class="tsd-signature tsd-kind-icon">favorites<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L10">src/lib/interfaces/api/route.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L2">src/lib/interfaces/api/route.ts:2</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="likes" class="tsd-anchor"></a>
+					<h3>likes</h3>
+					<div class="tsd-signature tsd-kind-icon">likes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L9">src/lib/interfaces/api/route.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="modificationdate" class="tsd-anchor"></a>
+					<h3>modification<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">modification<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L4">src/lib/interfaces/api/route.ts:4</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="tags" class="tsd-anchor"></a>
+					<h3>tags</h3>
+					<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L11">src/lib/interfaces/api/route.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="title" class="tsd-anchor"></a>
+					<h3>title</h3>
+					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/7ef6b3b/src/lib/interfaces/api/route.ts#L5">src/lib/interfaces/api/route.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -144,7 +215,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_src_lib_interfaces_models_index_.html">"src/lib/interfaces/models/index"</a>
+						<a href="../modules/_src_lib_interfaces_api_route_.html">"src/lib/interfaces/api/route"</a>
 					</li>
 				</ul>
 			</nav>
@@ -153,35 +224,44 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_src_lib_interfaces_models_index_.models.html" class="tsd-kind-icon">Models</a>
+						<a href="_src_lib_interfaces_api_route_.partialroute.html" class="tsd-kind-icon">Partial<wbr>Route</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_lib_interfaces_models_index_.models.html#route" class="tsd-kind-icon">route</a>
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#author" class="tsd-kind-icon">author</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_lib_interfaces_models_index_.models.html#tag" class="tsd-kind-icon">tag</a>
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#creationdate" class="tsd-kind-icon">creation<wbr>Date</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_lib_interfaces_models_index_.models.html#user" class="tsd-kind-icon">user</a>
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#description" class="tsd-kind-icon">description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_lib_interfaces_models_index_.models.html#waypoint" class="tsd-kind-icon">waypoint</a>
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#duration" class="tsd-kind-icon">duration</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#favorites" class="tsd-kind-icon">favorites</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#likes" class="tsd-kind-icon">likes</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#modificationdate" class="tsd-kind-icon">modification<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#tags" class="tsd-kind-icon">tags</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_interfaces_api_route_.partialroute.html#title" class="tsd-kind-icon">title</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_src_lib_interfaces_models_index_.html#routemodel" class="tsd-kind-icon">Route<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_src_lib_interfaces_models_index_.html#tagmodel" class="tsd-kind-icon">Tag<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_src_lib_interfaces_models_index_.html#usermodel" class="tsd-kind-icon">User<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_src_lib_interfaces_models_index_.html#waypointmodel" class="tsd-kind-icon">Waypoint<wbr>Model</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_src_lib_interfaces_api_route_.route.html" class="tsd-kind-icon">Route</a>
 					</li>
 				</ul>
 			</nav>
