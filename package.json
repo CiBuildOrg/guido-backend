@@ -22,7 +22,7 @@
   },
   "pre-commit": {
     "run": [
-      ":lint"
+      "lint"
     ]
   },
   "keywords": [],

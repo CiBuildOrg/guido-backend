@@ -1,4 +1,4 @@
-import {Models, Route, Tag, User} from "../lib/interfaces/sequelize/index";
+import {Landmark, Models, Route, Tag, User} from "../lib/interfaces/sequelize/index";
 
 export async function populateDb(models: Models): Promise<void> {
   const user: User = await models.user.create({
@@ -14,6 +14,11 @@ export async function populateDb(models: Models): Promise<void> {
   });
   const tag2: Tag = await models.tag.create({
     value: "Historical"
+  });
+  const landmark: Landmark = await models.landmark.create({
+    title: "Fourvière",
+    latitude: 10,
+    longitude: 20
   });
   await route.setAuthor(user);
   await route.addFavorites(user);

@@ -1,6 +1,6 @@
 import Sequelize = require("sequelize");
-import {getRoute, getRoutes} from "./api/index";
-import * as api from "./interfaces/api/index";
+import * as api from "./api/index";
+import * as apiInterfaces from "./interfaces/api/index";
 import {Models} from "./interfaces/sequelize/index";
 import {define as defineModels} from "./models";
 
@@ -22,10 +22,18 @@ export class Api {
     return new Api({db, models});
   }
 
-  context: api.Context;
+  context: apiInterfaces.Context;
 
-  constructor(context: api.Context) {
+  constructor(context: apiInterfaces.Context) {
     this.context = context;
+  }
+
+  async getLandmark(landmarkId: string): Promise<apiInterfaces.Landmark | null> {
+    return api.getLandmark(this.context, landmarkId);
+  }
+
+  async getLandmarks(): Promise<apiInterfaces.Landmark[]> {
+    return api.getLandmarks(this.context);
   }
 
   /**
@@ -34,13 +42,13 @@ export class Api {
    * If the route is not found, return `null`.
    *
    * @param routeId
-   * @returns {Promise<ApiRoute>}
+   * @returns {Promise<ApiLandmark>}
    */
-  async getRoute(routeId: string): Promise<api.Route | null> {
-    return getRoute(this.context, routeId);
+  async getRoute(routeId: string): Promise<apiInterfaces.Route | null> {
+    return api.getRoute(this.context, routeId);
   }
 
-  async getRoutes(): Promise<api.Route[]> {
-    return getRoutes(this.context);
+  async getRoutes(): Promise<apiInterfaces.Route[]> {
+    return api.getRoutes(this.context);
   }
 }

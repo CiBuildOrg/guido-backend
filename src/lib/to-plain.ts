@@ -1,6 +1,14 @@
 import * as api from "./interfaces/api/index";
 import * as sequelize from "./interfaces/sequelize/index";
 
+export async function toPlainLandmark(landmark: sequelize.Landmark): Promise<api.Landmark> {
+  const id: string = landmark.id;
+  const title: string = landmark.title;
+  const latitude: number = landmark.latitude;
+  const longitude: number = landmark.longitude;
+  return {id, title, latitude, longitude};
+}
+
 export async function toPlainRoute(route: sequelize.Route, partial: true): Promise<api.PartialRoute>;
 export async function toPlainRoute(route: sequelize.Route, partial: false): Promise<api.Route>;
 export async function toPlainRoute(route: any, partial: any): Promise<any> {

@@ -2,10 +2,21 @@ import * as Sequelize from "sequelize";
 import * as sequelizeInterfaces from "./interfaces/sequelize/index";
 
 export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
+  const landmark: sequelizeInterfaces.LandmarkModel = db.define<sequelizeInterfaces.Landmark, any>("landmark", {
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true
+    },
+    title: Sequelize.STRING,
+    latitude: Sequelize.DOUBLE,
+    longitude: Sequelize.DOUBLE
+  });
+
   const route: sequelizeInterfaces.RouteModel = db.define<sequelizeInterfaces.Route, any>("route", {
     id: {
       type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV1,
+      defaultValue: Sequelize.UUIDV4,
       primaryKey: true
     },
     title: Sequelize.STRING,
@@ -20,7 +31,7 @@ export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
   const user: sequelizeInterfaces.UserModel = db.define<sequelizeInterfaces.User, any>("user", {
     id: {
       type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV1,
+      defaultValue: Sequelize.UUIDV4,
       primaryKey: true
     },
     username: Sequelize.STRING
@@ -29,7 +40,7 @@ export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
   const waypoint: sequelizeInterfaces.WaypointModel = db.define<sequelizeInterfaces.Waypoint, any>("waypoint", {
     id: {
       type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV1,
+      defaultValue: Sequelize.UUIDV4,
       primaryKey: true
     },
     latitude: Sequelize.DOUBLE,
@@ -46,5 +57,5 @@ export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
   user.belongsToMany(route, {as: "favorites", through: "routes_favorites"});
   user.belongsToMany(route, {as: "likes", through: "routes_likes"});
 
-  return {route, tag, user, waypoint};
+  return {landmark, route, tag, user, waypoint};
 }

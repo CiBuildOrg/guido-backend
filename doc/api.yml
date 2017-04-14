@@ -133,9 +133,9 @@ definitions:
     type: object
     description: Geographical point of interest.
     properties:
-      name:
+      title:
         type: string
-        description: Name of the landmark.
+        description: Title of the landmark.
       latitude:
         type: number
         description:  Geographical latitude of the landmark
