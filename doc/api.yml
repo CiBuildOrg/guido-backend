@@ -65,6 +65,26 @@ paths:
       responses:
         200:
           description: A
+  /routes/:
+    post:
+      summary: Create a new route
+      parameters:
+      - name: body
+        in: body
+        required: true
+        description: The name of the route
+        schema:
+          $ref: '#/definitions/CreateRouteOptions'
+      responses:
+        200:
+          description: Route was successfully updated.
+          schema:
+            type: object
+            description: Response string.
+            properties:
+              status:
+                type: string
+                description: A status string.
   /routes/{id}:
     get:
       summary: Route Information
@@ -80,7 +100,7 @@ paths:
           description: Information about a specific route.
           schema:
             $ref: '#/definitions/Route'
-    post:
+    put:
       summary: Update Route Information
       parameters:
       - name: id
@@ -143,6 +163,20 @@ definitions:
         type: number
         format: double
         description: Geographical longitude of the landmark.
+  CreateRouteOptions:
+    type: object
+    description: The parameters to create a new route
+    properties:
+      title:
+        type: string
+        description: The title of the new route
+      description:
+        type: string
+        description: The description of the new route
+      duration:
+        type: integer
+        format: int32
+        description: The duration of the route in minutes
   Route:
     type: object
     description: Complete description of a route.

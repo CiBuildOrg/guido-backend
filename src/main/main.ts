@@ -1,3 +1,5 @@
+import * as bodyParser from "body-parser";
+import cookieParser = require("cookie-parser");
 import express = require("express");
 import {Server} from "http";
 import morgan = require("morgan");
@@ -17,6 +19,9 @@ async function run() {
 
   app.set("json spaces", 2);
   app.use(morgan("dev"));
+  app.use(cookieParser("8aa13561f0fa9c3343bcbc5ab274c9e5aa70b14d7c8e4104e17719e518609743"));
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
   app.use(await createApiRouter(api));
 
   const server: Server = app.listen(httpPort, () => {
