@@ -1,6 +1,8 @@
 import {Request, Response, Router} from "express";
 import {Api} from "../lib/api";
 import * as api from "../lib/interfaces/api";
+import bodyParser = require("body-parser");
+import * as handlers from "./handlers/index";
 
 export async function createApiRouter(api: Api): Promise<Router> {
   const apiRouter: Router = Router();
@@ -67,12 +69,21 @@ export async function createApiRouter(api: Api): Promise<Router> {
     }
   });
 
-  apiRouter.post("/routes", async function (req: Request, res: Response) {
-    return res.status(500).json({
-      type: "not-implemented",
-      message: "Route creation is not implemented"
-    });
-  });
+  apiRouter.post(
+    "/routes",
+    bodyParser.json(),
+    async function (req: Request, res: Response) {
+      // TODO(demurgos): Retrieve the user from the session or token
+      const user: {id: string} = {id: "1234567890"};
+      try {
+        const {status, body} = await handlers.routes.post(api, user, req.body);
+        res.status(status).json(body);
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({name: "InternalServerError", message: "Internal server error"});
+      }
+    }
+  );
 
   return apiRouter;
 }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Guido Backend API</title>
+</head>
+<body>
+<h1>Test form</h1>
+<form id="form" action="/" method="POST">
+  <div>
+    <label for="method">Method</label><br/>
+    <select name="method" id="method">
+      <option value="GET">GET</option>
+      <option value="POST">POST</option>
+    </select>
+  </div>
+  <div>
+    <label for="uri">URI</label><br/>
+    <input type="text" id="uri" name="uri"/>
+  </div>
+  <div>
+    <label for="data">JSON Data</label><br/>
+    <textarea id="data" name="data">{}</textarea>
+  </div>
+  <input type="submit"/>
+</form>
+<script>
+  document.getElementById("form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    const uri = document.getElementById("uri").value;
+    const method = document.getElementById("method").value;
+    const dataValue = document.getElementById("data").value;
+    var body = undefined;
+    var headers = {
+      "Accept": "application/json, text/plain, */*"
+    };
+    if (dataValue.length !== 0) {
+      try {
+
+        const data = JSON.parse(dataValue);
+        console.log(data);
+        body = JSON.stringify(data);
+      } catch (err) {
+        alert("Invalid JSON data");
+      }
+      headers["Content-Type"] = "application/json";
+    }
+    fetch(
+      uri,
+      {
+        method: method,
+        headers: headers,
+        body: body
+      }
+    );
+  });
+</script>
+</body>
+</html>

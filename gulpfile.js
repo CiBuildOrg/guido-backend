@@ -63,13 +63,7 @@ const libTestTarget = Object.assign(
       },
       typescript: typescript,
       tsconfigJson: ["test/tsconfig.json"]
-    },
-    copy: [
-      {
-        name: "scrapping",
-        files: ["test/scrapping/**/*.html"]
-      }
-    ]
+    }
   }
 );
 
@@ -87,7 +81,14 @@ const mainTarget = Object.assign(
       },
       typescript: typescript,
       tsconfigJson: ["main/tsconfig.json"]
-    }
+    },
+    copy: [
+      {
+        name: "html",
+        root: "../static",
+        files: ["**/*.html"]
+      }
+    ]
   }
 );
 

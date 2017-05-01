@@ -137,7 +137,7 @@ paths:
   /users/{id}:
     get:
       summary: User Profile
-      description: Summary of the user's public details.
+      description: Summary of the user's static details.
       parameters:
       - name: id
         in: path

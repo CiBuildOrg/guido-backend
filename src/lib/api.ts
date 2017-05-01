@@ -1,5 +1,6 @@
 import Sequelize = require("sequelize");
-import {createRoute, getRoute, getRoutes} from "./api/index";
+import {CreateRouteOptions} from "./api/create-route";
+import {createRoute} from "./api/index";
 import * as api from "./api/index";
 import * as apiInterfaces from "./interfaces/api/index";
 import {Models} from "./interfaces/sequelize/index";
@@ -37,7 +38,7 @@ export class Api {
     return api.getLandmarks(this.context);
   }
 
-  async createRoute(options: api.CreateRouteOptions): Promise<api.Route> {
+  async createRoute(options: CreateRouteOptions): Promise<apiInterfaces.Route> {
     return createRoute(this.context, options);
   }
 

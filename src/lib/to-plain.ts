@@ -26,7 +26,9 @@ export async function toPlainRoute(route: any, partial: any): Promise<any> {
   const id: string = route.id;
   const title: string = route.title;
   const description: string = route.description;
-  const author: api.User = await toPlainUser(await route.getAuthor());
+  // TODO(demurgos): Ensure that the author always exists
+  const _author: sequelize.User | null = await route.getAuthor();
+  const author: api.User = _author !== null ? await toPlainUser(_author) : {} as any;
   const creationDate: Date = route.createdAt;
   const modificationDate: Date = route.updatedAt;
   const duration: number = route.duration;
