@@ -54,7 +54,7 @@ async function toPlainTags(tags: sequelize.Tag[]): Promise<string[]> {
   return tags.map((tag: sequelize.Tag): string => tag.value);
 }
 
-async function toPlainUser(user: sequelize.User): Promise<api.User> {
+export async function toPlainUser(user: sequelize.User): Promise<api.User> {
   const id: string = user.id;
   const username: string = user.username;
   return {id, username};

@@ -43,7 +43,8 @@ export function define(db: Sequelize.Sequelize): sequelizeInterfaces.Models {
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true
     },
-    username: Sequelize.STRING
+    username: Sequelize.STRING,
+    key: Sequelize.STRING
   });
 
   const waypoint: sequelizeInterfaces.WaypointModel = db.define<sequelizeInterfaces.Waypoint, any>("waypoint", {

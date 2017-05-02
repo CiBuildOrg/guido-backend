@@ -57,4 +57,8 @@ export class Api {
   async getRoutes(): Promise<apiInterfaces.PartialRoute[]> {
     return api.getRoutes(this.context);
   }
+
+  async getUser(userId: string): Promise<apiInterfaces.User | null> {
+    return api.getUser(this.context, userId);
+  }
 }

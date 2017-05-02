@@ -85,6 +85,27 @@ export async function createApiRouter(api: Api): Promise<Router> {
     }
   );
 
+  apiRouter.get("/users/:user_id", async function (req: Request, res: Response) {
+    try {
+      const userId: string = req.params["user_id"];
+      const user: api.User | null = await api.getUser(userId);  // TODO(Lyrositor) Check input
+      if (user === null) {
+        res
+          .status(404)
+          .json({
+            error: "Route not found"
+          });
+      } else {
+        res
+          .status(200)
+          .json(user);
+      }
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
+  });
+
   return apiRouter;
 }
 

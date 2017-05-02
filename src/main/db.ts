@@ -1,9 +1,12 @@
+import * as crypto from "crypto";
+
 import {Comment, Landmark, Models, Route, Tag, User} from "../lib/interfaces/sequelize/index";
 
 export async function populateDb(models: Models): Promise<void> {
   const user: User = await models.user.create({
     id: "f4d2ae8b-9cc1-44b9-9da5-f326bd248980",
-    username: "Guido"
+    username: "Guido",
+    key: crypto.createHash("sha256").update("0102030405").digest().toString("hex")
   });
   const route: Route = await models.route.create({
     id: "f4d2ae8b-9cc1-44b9-9da5-f326bd248981",
