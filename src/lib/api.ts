@@ -1,5 +1,6 @@
 import Sequelize = require("sequelize");
 import {CreateRouteOptions} from "./api/create-route";
+import {GetRoutesOptions} from "./api/get-routes";
 import {createRoute} from "./api/index";
 import * as api from "./api/index";
 import * as dbModel from "./db-models/index";
@@ -54,8 +55,8 @@ export class Api {
     return api.getRoute(this.context, routeId);
   }
 
-  async getRoutes(): Promise<apiInterfaces.PartialRoute[]> {
-    return api.getRoutes(this.context);
+  async getRoutes(params: GetRoutesOptions): Promise<apiInterfaces.PartialRoute[]> {
+    return api.getRoutes(this.context, params);
   }
 
   async getUser(userId: string): Promise<apiInterfaces.User | null> {

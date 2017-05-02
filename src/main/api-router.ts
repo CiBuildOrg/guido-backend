@@ -44,7 +44,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
 
   apiRouter.get("/routes", async function (req: Request, res: Response) {
     try {
-      const routes: resources.PartialRoute[] = await api.getRoutes();
+      const routes: resources.PartialRoute[] = await api.getRoutes(req.query);
       return res.status(200).json(routes);
     } catch (err) {
       console.error(err);
