@@ -8,9 +8,10 @@ export async function authenticateUser(apiContext: ApiContext, req: Request): Pr
   if (typeof req.query.key !== "string") {
     return undefined;
   }
-  const user: DbUser | null = await apiContext.models.user.findOne(
-    {
-      where: {key: crypto.createHash("sha256").update(req.query.key).digest("hex")}
-    });
+  const user: DbUser | null = await apiContext.models.user.findOne({
+    where: {
+      key: crypto.createHash("sha256").update(req.query.key).digest("hex")
+    }
+  });
   return user === null ? undefined : DbUser.toPlain(user);
 }
