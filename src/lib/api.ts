@@ -2,9 +2,9 @@ import Sequelize = require("sequelize");
 import {CreateRouteOptions} from "./api/create-route";
 import {createRoute} from "./api/index";
 import * as api from "./api/index";
-import * as apiInterfaces from "./interfaces/api/index";
-import {Models} from "./interfaces/sequelize/index";
-import {define as defineModels} from "./models";
+import * as dbModel from "./db-models/index";
+import {ApiContext} from "./interfaces/api-context";
+import * as apiInterfaces from "./resources/index";
 
 export interface CreateApiOptions {
   databaseUrl: string;
@@ -15,7 +15,7 @@ export class Api {
   static async create(options: CreateApiOptions): Promise<Api> {
     const db: Sequelize.Sequelize = new Sequelize(options.databaseUrl);
 
-    const models: Models = defineModels(db);
+    const models: dbModel.Models = dbModel.defineAll(db);
 
     if (options.resetDb) {
       await db.sync({force: true});
@@ -24,9 +24,9 @@ export class Api {
     return new Api({db, models});
   }
 
-  context: apiInterfaces.Context;
+  context: ApiContext;
 
-  constructor(context: apiInterfaces.Context) {
+  constructor(context: ApiContext) {
     this.context = context;
   }
 

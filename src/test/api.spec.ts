@@ -1,6 +1,6 @@
 import {assert} from "chai";
-import {databaseUrl} from "../test/config";
-import {Api} from "./api";
+import {Api} from "../lib/api";
+import {databaseUrl} from "./config";
 
 describe("Api", function () {
   describe("create", function () {

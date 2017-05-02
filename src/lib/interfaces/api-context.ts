@@ -1,7 +1,7 @@
 import {Sequelize} from "sequelize";
-import {Models} from "../sequelize/index";
+import {Models} from "../db-models/index";
 
-export interface Context {
+export interface ApiContext {
   db: Sequelize;
   models: Models;
 }

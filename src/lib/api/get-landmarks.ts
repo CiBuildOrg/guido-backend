@@ -1,13 +1,12 @@
-import {Context} from "../interfaces/api/context";
-import {Landmark as ApiLandmark} from "../interfaces/api/landmark";
-import {Landmark as SequelizeLandmark} from "../interfaces/sequelize/landmark";
-import {toPlainLandmark} from "../to-plain";
+import {Landmark as DbLandmark} from "../db-models/landmark";
+import {ApiContext} from "../interfaces/api-context";
+import {Landmark as ApiLandmark} from "../resources/landmark";
 
-export async function getLandmarks(apiContext: Context): Promise<ApiLandmark[]> {
-  const landmarks: SequelizeLandmark[] = await apiContext.models.landmark.findAll();
+export async function getLandmarks(apiContext: ApiContext): Promise<ApiLandmark[]> {
+  const landmarks: DbLandmark[] = await apiContext.models.landmark.findAll();
   return Promise.all(
-    landmarks.map((landmark: SequelizeLandmark): Promise<ApiLandmark> => {
-      return toPlainLandmark(landmark);
+    landmarks.map((landmark: DbLandmark): Promise<ApiLandmark> => {
+      return DbLandmark.toPlain(landmark);
     })
   );
 }

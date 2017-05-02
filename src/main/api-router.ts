@@ -1,6 +1,7 @@
 import {Request, Response, Router} from "express";
 import {Api} from "../lib/api";
-import * as api from "../lib/interfaces/api";
+import * as resources from "../lib/resources/index";
+import {User} from "../lib/resources/user";
 import bodyParser = require("body-parser");
 import {authenticateUser} from "./auth";
 import * as handlers from "./handlers/index";
@@ -11,7 +12,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
   apiRouter.get("/landmarks/:landmark_id", async function (req: Request, res: Response) {
     try {
       const landmarkId: string = req.params["landmark_id"];
-      const landmark: api.Landmark | null = await api.getLandmark(landmarkId);  // TODO(Lyrositor) Check input
+      const landmark: resources.Landmark | null = await api.getLandmark(landmarkId);  // TODO(Lyrositor) Check input
       if (landmark === null) {
         res
           .status(404)
@@ -31,7 +32,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
 
   apiRouter.get("/landmarks/", async function (req: Request, res: Response) {
     try {
-      const landmarks: api.Landmark[] = await api.getLandmarks();
+      const landmarks: resources.Landmark[] = await api.getLandmarks();
       res.status(200).json(landmarks);
     } catch (err) {
       console.error(err);
@@ -42,7 +43,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
   apiRouter.get("/routes/:route_id", async function (req: Request, res: Response) {
     try {
       const routeId: string = req.params["route_id"];
-      const route: api.Route | null = await api.getRoute(routeId);  // TODO(Lyrositor) Check input
+      const route: resources.Route | null = await api.getRoute(routeId);  // TODO(Lyrositor) Check input
       if (route === null) {
         res
           .status(404)
@@ -62,7 +63,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
 
   apiRouter.get("/routes/", async function (req: Request, res: Response) {
     try {
-      const routes: api.PartialRoute[] = await api.getRoutes();
+      const routes: resources.PartialRoute[] = await api.getRoutes();
       return res.status(200).json(routes);
     } catch (err) {
       console.error(err);
@@ -75,7 +76,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
     bodyParser.json(),
     async function (req: Request, res: Response) {
       // TODO(demurgos): Retrieve the user from the session or token
-      const user: api.User | undefined = await authenticateUser(api.context, req);
+      const user: User | undefined = await authenticateUser(api.context, req);
       try {
         const {status, body} = await handlers.routes.post(api, user, req.body);
         res.status(status).json(body);
@@ -89,7 +90,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
   apiRouter.get("/users/:user_id", async function (req: Request, res: Response) {
     try {
       const userId: string = req.params["user_id"];
-      const user: api.User | null = await api.getUser(userId);  // TODO(Lyrositor) Check input
+      const user: User | null = await api.getUser(userId);  // TODO(Lyrositor) Check input
       if (user === null) {
         res
           .status(404)

@@ -1,13 +1,12 @@
-import {Context} from "../interfaces/api/context";
-import {PartialRoute as ApiPartialRoute} from "../interfaces/api/route";
-import {Route as SequelizeRoute} from "../interfaces/sequelize/route";
-import {toPlainRoute} from "../to-plain";
+import {Route as DbRoute} from "../db-models/route";
+import {ApiContext} from "../interfaces/api-context";
+import {PartialRoute as ApiPartialRoute} from "../resources/route";
 
-export async function getRoutes(apiContext: Context): Promise<ApiPartialRoute[]> {
-  const routes: SequelizeRoute[] = await apiContext.models.route.findAll();
+export async function getRoutes(apiContext: ApiContext): Promise<ApiPartialRoute[]> {
+  const routes: DbRoute[] = await apiContext.models.route.findAll();
   return Promise.all(
-    routes.map((route: SequelizeRoute): Promise<ApiPartialRoute> => {
-      return toPlainRoute(route, true);
+    routes.map((route: DbRoute): Promise<ApiPartialRoute> => {
+      return DbRoute.toPlain(route, true);
     })
   );
 }

@@ -1,7 +1,7 @@
 import * as kryo from "kryo";
 import {Api} from "../../lib/api";
 import {CreateRouteOptions} from "../../lib/api/create-route";
-import {Route} from "../../lib/interfaces/api/route";
+import {Route} from "../../lib/resources/route";
 
 /**
  * Deserialized request

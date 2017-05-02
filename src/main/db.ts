@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
 
-import {Comment, Landmark, Models, Route, Tag, User} from "../lib/interfaces/sequelize/index";
+import {Comment, Landmark, Models, Route, Tag, User} from "../lib/db-models/index";
 
 export async function populateDb(models: Models): Promise<void> {
   const user: User = await models.user.create({

@@ -1,7 +1,6 @@
-import {Context} from "../interfaces/api/context";
-import {Route as ApiRoute} from "../interfaces/api/route";
-import {Route as SequelizeRoute} from "../interfaces/sequelize/route";
-import {toPlainRoute} from "../to-plain";
+import {Route as DbRoute} from "../db-models/route";
+import {ApiContext} from "../interfaces/api-context";
+import {Route as ApiRoute} from "../resources/route";
 
 export interface CreateRouteOptions {
   /**
@@ -26,11 +25,11 @@ export interface CreateRouteOptions {
   duration: number;
 }
 
-export async function createRoute(apiContext: Context, options: CreateRouteOptions): Promise<ApiRoute> {
-  const route: SequelizeRoute = await apiContext.models.route.create({
+export async function createRoute(apiContext: ApiContext, options: CreateRouteOptions): Promise<ApiRoute> {
+  const route: DbRoute = await apiContext.models.route.create({
     title: options.title,
     description: options.description,
     duration: options.duration
   });
-  return toPlainRoute(route, false);
+  return DbRoute.toPlain(route, false);
 }
