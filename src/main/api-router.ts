@@ -2,6 +2,7 @@ import {Request, Response, Router} from "express";
 import {Api} from "../lib/api";
 import * as api from "../lib/interfaces/api";
 import bodyParser = require("body-parser");
+import {authenticateUser} from "./auth";
 import * as handlers from "./handlers/index";
 
 export async function createApiRouter(api: Api): Promise<Router> {
@@ -74,7 +75,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
     bodyParser.json(),
     async function (req: Request, res: Response) {
       // TODO(demurgos): Retrieve the user from the session or token
-      const user: {id: string} = {id: "1234567890"};
+      const user: api.User | undefined = await authenticateUser(api.context, req);
       try {
         const {status, body} = await handlers.routes.post(api, user, req.body);
         res.status(status).json(body);
