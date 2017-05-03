@@ -1,6 +1,8 @@
 import * as Sequelize from "sequelize";
 import {Comment as ApiComment} from "../resources/comment";
 import {PartialRoute as ApiPartialRoute, Route as ApiRoute} from "../resources/route";
+import {User as ApiUser} from "../resources/user";
+import {Uuid} from "../resources/uuid";
 import {Waypoint as ApiWaypoint} from "../resources/waypoint";
 import {Comment} from "./comment";
 import {Tag} from "./tag";
@@ -14,6 +16,7 @@ export interface Route {
   id: string;
   title: string;
   description: string;
+  imageUrl: string;
   duration: number;
   createdAt: Date;
   updatedAt: Date;
@@ -34,7 +37,9 @@ export interface Route {
 
   addComments(comment: Comment): Promise<any>;
 
-  getComments(): Promise<Comment>[];
+  addWaypoints(waypoint: Waypoint): Promise<any>;
+
+  getComments(): Promise<Comment[]>;
 
   /**
    * Adds a single user favorite to a route.
@@ -72,19 +77,19 @@ export function defineRouteModel(db: Sequelize.Sequelize): RouteModel {
     },
     title: Sequelize.STRING,
     description: Sequelize.STRING,
+    imageUrl: Sequelize.STRING,
     duration: Sequelize.INTEGER
   });
 }
 
 export async function toPlainRoute(route: Route, partial: true): Promise<ApiPartialRoute>;
 export async function toPlainRoute(route: Route, partial: false): Promise<ApiRoute>;
-export async function toPlainRoute(route: any, partial: any): Promise<any> {
-  const id: string = route.id;
+export async function toPlainRoute(route: Route, partial: boolean): Promise<any> {
+  const id: Uuid = route.id;
   const title: string = route.title;
   const description: string = route.description;
-  // TODO(demurgos): Ensure that the author always exists
-  const _author: User | null = await route.getAuthor();
-  const author: User = _author !== null ? await User.toPlain(_author) : {} as any;
+  const imageUrl: string = route.imageUrl;
+  const author: ApiUser = await User.toPlain(await route.getAuthor());
   const creationDate: Date = route.createdAt;
   const modificationDate: Date = route.updatedAt;
   const duration: number = route.duration;
@@ -93,7 +98,7 @@ export async function toPlainRoute(route: any, partial: any): Promise<any> {
   const tags: string[] = await Tag.toPlainList(await route.getTags());
 
   const partialRoute: ApiPartialRoute = {
-    id, title, description, author, creationDate,
+    id, title, description, imageUrl, author, creationDate,
     modificationDate, duration, likes, favorites, tags
   };
 

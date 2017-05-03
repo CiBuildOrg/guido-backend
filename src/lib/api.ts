@@ -61,4 +61,8 @@ export class Api {
   async getUser(userId: string): Promise<apiInterfaces.User | null> {
     return api.getUser(this.context, userId);
   }
+
+  async getWaypoint(waypointId: string): Promise<apiInterfaces.Waypoint | null> {
+    return api.getWaypoint(this.context, waypointId);
+  }
 }

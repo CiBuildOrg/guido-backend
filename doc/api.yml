@@ -65,7 +65,7 @@ paths:
       responses:
         200:
           description: A
-  /routes/:
+  /routes:
     post:
       summary: Create a new route
       parameters:
@@ -234,6 +234,9 @@ definitions:
       description:
         type: string
         description: Description of the route.
+      imageUrl:
+        type: string
+        description: URL for the image of the route
       author:
         $ref: '#/definitions/User'
       creation_date:
@@ -256,6 +259,11 @@ definitions:
       tags:
         type: array
         description: Set of user tags describing the route.
+        items:
+          type: string
+      comments:
+        type: array
+        description: A list of comments
         items:
           type: string
   User:

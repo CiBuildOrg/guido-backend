@@ -1,6 +1,9 @@
 import * as kryo from "kryo";
+import {Comment} from "./comment";
+import {Tag} from "./tag";
 import {User} from "./user";
 import {Uuid} from "./uuid";
+import {Waypoint} from "./waypoint";
 
 export interface PartialRoute {
   id: Uuid;
@@ -8,6 +11,7 @@ export interface PartialRoute {
   modificationDate: Date;
   title: string;
   description: string;
+  imageUrl: string;
   author: User;
   duration: number;
   likes: number;
@@ -53,6 +57,9 @@ export namespace PartialRoute {
       description: {
         type: new kryo.Ucs2StringType({maxLength: 500})
       },
+      imageUrl: {
+        type: new kryo.Ucs2StringType({maxLength: 500})
+      },
       author: {
         type: new kryo.DocumentType<{}>({properties: {}})
       },
@@ -67,7 +74,7 @@ export namespace PartialRoute {
       },
       tags: {
         type: new kryo.ArrayType({
-          itemType: new kryo.Ucs2StringType({maxLength: 30}),
+          itemType: Tag.type,
           maxLength: 20
         })
       }
@@ -76,7 +83,8 @@ export namespace PartialRoute {
 }
 
 export interface Route extends PartialRoute {
-  waypoints: any[];
+  waypoints: Waypoint[];
+  comments: Comment[];
 }
 
 /* tslint:disable-next-line:no-namespace */
@@ -85,9 +93,25 @@ export namespace Route {
    * Serialized Route
    */
   export interface Json extends PartialRoute.Json {
-    waypoints: any[];
+    waypoints: Waypoint.Json[];
+    comments: Comment.Json[];
   }
 
-  // TODO: Properly describe the type of a waypoint
-  export const type: kryo.DocumentType<Route> = <any> PartialRoute.type;
+  export const type: kryo.DocumentType<Route> = new kryo.DocumentType<Route>({
+    properties: {
+      ...PartialRoute.type.properties,
+      waypoints: {
+        type: new kryo.ArrayType({
+          itemType: Waypoint.type,
+          maxLength: 100
+        })
+      },
+      comments: {
+        type: new kryo.ArrayType({
+          itemType: Comment.type,
+          maxLength: 100
+        })
+      }
+    }
+  });
 }
