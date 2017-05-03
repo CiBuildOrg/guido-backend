@@ -42,15 +42,12 @@ export async function createApiRouter(api: Api): Promise<Router> {
     })
   );
 
-  apiRouter.get("/routes", async function (req: Request, res: Response) {
-    try {
-      const {status, body} = await handlers.routes.get(api, req.query);
-      res.status(status).json(body);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({name: "InternalServerError", message: "Internal server error"});
-    }
-  });
+  apiRouter.get(
+    "/routes",
+    handle(async function (req: Request, res: Response): Promise<HandlerResult> {
+      return handlers.routes.get(api, req.query);
+    })
+  );
 
   apiRouter.post(
     "/routes",

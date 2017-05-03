@@ -66,18 +66,47 @@ paths:
         200:
           description: A
   /routes:
+    get:
+      summary: Search for routes
+      parameters:
+      - name: keywords
+        in: query
+        required: false
+        type: string
+        description: Keywords to search for in the routes' titles
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        description: The maximum number of results
+      - name: near
+        in: query
+        required: false
+        schema:
+          $ref: '#/definitions/GeoArea'
+        description: A rectangular area in which the route should be located
+      - name: tags
+        in: query
+        required: false
+        type: array
+        items:
+          type: string
+        description: A list of possible tags
+      responses:
+        200:
+          description: A list of routes
     post:
       summary: Create a new route
       parameters:
       - name: body
         in: body
         required: true
-        description: The name of the route
+        description: The content of the route
         schema:
           $ref: '#/definitions/CreateRouteOptions'
       responses:
         200:
-          description: Route was successfully updated.
+          description: Route was successfully created.
           schema:
             type: object
             description: Response string.
@@ -177,6 +206,22 @@ definitions:
         type: integer
         format: int32
         description: The duration of the route in minutes
+  GeoArea:
+    type: object
+    description: A geographical area defined by its longitudinal and latitudinal coordinate boundaries.
+    properties:
+      latMin:
+        type: number
+        description: The minimal latitude
+      latMax:
+        type: number
+        description: The maximal latitude
+      longMin:
+        type: number
+        description: The minimal longitude
+      longMax:
+        type: number
+        description: The maximal longitude
   Route:
     type: object
     description: Complete description of a route.
