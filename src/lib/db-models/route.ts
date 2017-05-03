@@ -59,7 +59,7 @@ export interface Route {
 
   getLikes(): Promise<User>[];
 
-  addTags(tag: Tag): Promise<any>;
+  addTags(tags: Tag[]): Promise<any>;
 
   getTags(): Promise<Tag[]>;
 

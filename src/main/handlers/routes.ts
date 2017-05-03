@@ -2,7 +2,8 @@ import * as kryo from "kryo";
 import {Api} from "../../lib/api";
 import {CreateRouteOptions} from "../../lib/api/create-route";
 import {GetRoutesOptions} from "../../lib/api/get-routes";
-import {Route} from "../../lib/resources/route";
+import {PartialRoute, Route} from "../../lib/resources/route";
+import {Tag} from "../../lib/resources/tag";
 
 /**
  * Deserialized request
@@ -57,40 +58,69 @@ export namespace GetRoutesQuery {
         type: new kryo.Ucs2StringType({maxLength: 100})
       },
       limit: {
+        optional: true,
         type: new kryo.Int32Type()
       },
       near: {
+        optional: true,
         type: new kryo.DocumentType<any>({
           ignoreExtraKeys: false,
           properties: {
-            latitude: {
+            latMin: {
               type: new kryo.Float64Type()
             },
-            longitude: {
+            latMax: {
               type: new kryo.Float64Type()
             },
-            radius: {
+            longMin: {
+              type: new kryo.Float64Type()
+            },
+            longMax: {
               type: new kryo.Float64Type()
             }
           }
         })
       },
       tags: {
+        optional: true,
         type: new kryo.ArrayType({
-          itemType: new kryo.Ucs2StringType({maxLength: 50}),
-          maxLength: 100
+          itemType: Tag.type,
+          maxLength: 50
         })
       }
     }
   });
 }
 
-export interface PostError {
+export interface HandlerError {
   name: string;
   message: string;
 }
-export type PostResult = {status: 200, body: Route.Json} | {status: 400 | 403 | 500, body: PostError};
+export type GetResult = {status: 200, body: PartialRoute.Json[]} | {status: 400 | 500, body: HandlerError};
+export type PostResult = {status: 200, body: Route.Json} | {status: 400 | 403 | 500, body: HandlerError};
 
+/**
+ * Get routes, filtered by query search parameters.
+ */
+export async function get(api: Api, query: GetRoutesQuery.Json): Promise<GetResult> {
+  let options: GetRoutesQuery;
+  try {
+    options = GetRoutesQuery.type.read("qs", query);
+  } catch (err) {
+    return {status: 400, body: {name: "InvalidRequest", message: err.toString()}};
+  }
+  let result: PartialRoute[];
+  try {
+    result = await api.getRoutes(options);
+  } catch (err) {
+    switch (err.name) {
+      // TODO(demurgos): Handle the errors
+      default:
+        throw err;
+    }
+  }
+  return {status: 200, body: result.map((route) => PartialRoute.type.write("json", route)) as PartialRoute.Json[]};
+}
 /**
  * Create a new Route
  */

@@ -44,11 +44,11 @@ export async function createApiRouter(api: Api): Promise<Router> {
 
   apiRouter.get("/routes", async function (req: Request, res: Response) {
     try {
-      const routes: resources.PartialRoute[] = await api.getRoutes(req.query);
-      return res.status(200).json(routes);
+      const {status, body} = await handlers.routes.get(api, req.query);
+      res.status(status).json(body);
     } catch (err) {
       console.error(err);
-      return res.sendStatus(500);
+      res.status(500).json({name: "InternalServerError", message: "Internal server error"});
     }
   });
 

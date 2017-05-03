@@ -69,10 +69,10 @@ export async function populateDb(models: Models): Promise<void> {
     await route.addWaypoints(wp);
   }
   const tag1: Tag = await models.tag.create({
-    value: "Lyon"
+    value: "lyon"
   });
   const tag2: Tag = await models.tag.create({
-    value: "Historical"
+    value: "historical"
   });
   const landmark0: Landmark = await models.landmark.create({
     title: "Fourvière",
@@ -91,6 +91,5 @@ export async function populateDb(models: Models): Promise<void> {
   await route.addComments(comment);
   await route.setAuthor(user);
   await route.addFavorites(user);
-  await route.addTags(tag1);
-  await route.addTags(tag2);
+  await route.addTags([tag1, tag2]);
 }

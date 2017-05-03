@@ -1,5 +1,6 @@
 import * as Sequelize from "sequelize";
 import {Tag as ApiTag} from "../resources/tag";
+import {Route} from "./route";
 
 /**
  * Sequelize instance of a Tag
