@@ -1,19 +1,19 @@
 import * as kryo from "kryo";
-import {Uuid} from "./uuid";
+import {PartialRoute} from "./partial-route";
+import {PartialUser} from "./partial-user";
 
-export interface User {
-  id: Uuid;
-  username: string;
+export interface User extends PartialUser {
+  recentRoutes: PartialRoute[];
+  favoriteRoutes: PartialRoute[];
 }
 
-/* tslint:disable-next-line:no-namespace */
 export namespace User {
   /**
    * Serialized route
    */
-  export interface Json {
-    id: string;
-    username: string;
+  export interface Json extends PartialUser.Json {
+    recentRoutes: PartialRoute.Json[];
+    favoriteRoutes: PartialRoute.Json[];
   }
 
   /**
@@ -21,11 +21,18 @@ export namespace User {
    */
   export const type: kryo.DocumentType<User> = new kryo.DocumentType<User>({
     properties: {
-      id: {
-        type: Uuid.type
+      ...PartialUser.type.properties,
+      recentRoutes: {
+        type: new kryo.ArrayType({
+          itemType: PartialRoute.type,
+          maxLength: 30
+        })
       },
-      username: {
-        type: new kryo.Ucs2StringType({maxLength: 30})
+      favoriteRoutes: {
+        type: new kryo.ArrayType({
+          itemType: PartialRoute.type,
+          maxLength: 30
+        })
       }
     }
   });

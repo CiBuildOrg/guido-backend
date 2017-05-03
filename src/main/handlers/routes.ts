@@ -1,8 +1,8 @@
 import * as kryo from "kryo";
 import {Api} from "../../lib/api";
-import {CreateRouteOptions} from "../../lib/api/create-route";
 import {GetRoutesOptions} from "../../lib/api/get-routes";
-import {PartialRoute, Route} from "../../lib/resources/route";
+import {PartialRoute} from "../../lib/resources/partial-route";
+import {Route} from "../../lib/resources/route";
 import {Tag} from "../../lib/resources/tag";
 
 /**
@@ -121,6 +121,7 @@ export async function get(api: Api, query: GetRoutesQuery.Json): Promise<GetResu
   }
   return {status: 200, body: result.map((route) => PartialRoute.type.write("json", route)) as PartialRoute.Json[]};
 }
+
 /**
  * Create a new Route
  */

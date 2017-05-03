@@ -1,6 +1,6 @@
 import * as Sequelize from "sequelize";
 import {Comment as ApiComment} from "../resources/comment";
-import {User as ApiUser} from "../resources/user";
+import {PartialUser as ApiPartialUser} from "../resources/partial-user";
 import {User} from "./user";
 
 /**
@@ -30,7 +30,7 @@ export function defineCommentModel(db: Sequelize.Sequelize): CommentModel {
 
 export async function toPlainComment(comment: Comment): Promise<ApiComment> {
   const id: string = comment.id;
-  const author: ApiUser = await User.toPlain(await comment.getAuthor());
+  const author: ApiPartialUser = await User.toPlain(await comment.getAuthor(), true);
   const text: string = comment.text;
   return {id, author, text};
 }

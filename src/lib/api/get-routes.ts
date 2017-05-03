@@ -1,6 +1,6 @@
 import {Route as DbRoute} from "../db-models/route";
 import {ApiContext} from "../interfaces/api-context";
-import {PartialRoute as ApiPartialRoute} from "../resources/route";
+import {PartialRoute as ApiPartialRoute} from "../resources/partial-route";
 
 export interface GetRoutesOptions {
   keywords?: string;

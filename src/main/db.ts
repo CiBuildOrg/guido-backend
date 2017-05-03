@@ -94,4 +94,6 @@ export async function populateDb(models: Models): Promise<void> {
   await route.setAuthor(user);
   await route.addFavorites(user);
   await route.addTags([tag1, tag2]);
+  await user.addFavoriteRoutes(route);
+  await user.addRecentRoutes(route);
 }

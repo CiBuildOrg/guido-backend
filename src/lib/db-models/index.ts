@@ -37,12 +37,15 @@ export function defineAll(db: Sequelize.Sequelize): Models {
   route.hasMany(comment, {as: "comments"});
   route.hasMany(waypoint, {as: "waypoints"});
   route.belongsTo(user, {as: "author"});
-  route.belongsToMany(user, {as: "Favorites", through: "routes_favorites"});
-  route.belongsToMany(user, {as: "Likes", through: "routes_likes"});
+
   route.belongsToMany(tag, {as: "Tags", through: "routes_tags"});
   tag.belongsToMany(route, {as: "Routes", through: "routes_tags"});
-  user.belongsToMany(route, {as: "Routes", through: "routes_favorites"});
-  user.belongsToMany(route, {as: "Routes", through: "routes_likes"});
+  route.belongsToMany(user, {as: "Favorites", through: "routes_favorites"});
+  user.belongsToMany(route, {as: "FavoriteRoutes", through: "routes_favorites"});
+  route.belongsToMany(user, {as: "Likes", through: "routes_likes"});
+  user.belongsToMany(route, {as: "LikedRoutes", through: "routes_likes"});
+  route.belongsToMany(user, {as: "RecentUsers", through: "routes_recent"});
+  user.belongsToMany(route, {as: "RecentRoutes", through: "routes_recent"});
 
   return {comment, landmark, route, tag, user, waypoint};
 }

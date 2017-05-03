@@ -1,7 +1,8 @@
 import * as Sequelize from "sequelize";
 import {Comment as ApiComment} from "../resources/comment";
-import {PartialRoute as ApiPartialRoute, Route as ApiRoute} from "../resources/route";
-import {User as ApiUser} from "../resources/user";
+import {PartialRoute as ApiPartialRoute} from "../resources/partial-route";
+import {PartialUser as ApiPartialUser} from "../resources/partial-user";
+import {Route as ApiRoute} from "../resources/route";
 import {Uuid} from "../resources/uuid";
 import {Waypoint as ApiWaypoint} from "../resources/waypoint";
 import {Comment} from "./comment";
@@ -48,7 +49,7 @@ export interface Route {
    */
   addFavorites(user: User): Promise<any>;
 
-  getFavorites(): Promise<User>[];
+  getFavorites(): Promise<User[]>;
 
   /**
    * Adds a single user like to a route.
@@ -57,7 +58,7 @@ export interface Route {
    */
   addLikes(user: User): Promise<any>;
 
-  getLikes(): Promise<User>[];
+  getLikes(): Promise<User[]>;
 
   addTags(tags: Tag[]): Promise<any>;
 
@@ -84,12 +85,12 @@ export function defineRouteModel(db: Sequelize.Sequelize): RouteModel {
 
 export async function toPlainRoute(route: Route, partial: true): Promise<ApiPartialRoute>;
 export async function toPlainRoute(route: Route, partial: false): Promise<ApiRoute>;
-export async function toPlainRoute(route: Route, partial: boolean): Promise<any> {
+export async function toPlainRoute(route: Route, partial: any): Promise<any> {
   const id: Uuid = route.id;
   const title: string = route.title;
   const description: string = route.description;
   const imageUrl: string = route.imageUrl;
-  const author: ApiUser = await User.toPlain(await route.getAuthor());
+  const author: ApiPartialUser = await User.toPlain(await route.getAuthor(), true);
   const creationDate: Date = route.createdAt;
   const modificationDate: Date = route.updatedAt;
   const duration: number = route.duration;
@@ -111,9 +112,15 @@ export async function toPlainRoute(route: Route, partial: boolean): Promise<any>
   }
 }
 
-/* tslint:disable-next-line:no-namespace */
+export async function toPlainRoutes(routes: Route[], partial: true): Promise<ApiPartialRoute[]>;
+export async function toPlainRoutes(routes: Route[], partial: false): Promise<ApiRoute[]>;
+export async function toPlainRoutes(routes: Route[], partial: any): Promise<any> {
+  return Promise.all(routes.map((route: Route) => toPlainRoute(route, partial)));
+}
+
 export namespace Route {
   export type Model = RouteModel;
   export const define: typeof defineRouteModel = defineRouteModel;
   export const toPlain: typeof toPlainRoute = toPlainRoute;
+  export const toPlainList: typeof toPlainRoutes = toPlainRoutes;
 }

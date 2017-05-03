@@ -1,7 +1,6 @@
 import {Request, Response, Router} from "express";
 import {Api} from "../lib/api";
-import * as resources from "../lib/resources/index";
-import {User} from "../lib/resources/user";
+import {PartialUser} from "../lib/resources/partial-user";
 import bodyParser = require("body-parser");
 import {authenticateUser} from "./auth";
 import * as handlers from "./handlers/index";
@@ -53,7 +52,7 @@ export async function createApiRouter(api: Api): Promise<Router> {
     "/routes",
     bodyParser.json(),
     handle(async function (req: Request, res: Response): Promise<HandlerResult> {
-      const user: User | undefined = await authenticateUser(api.context, req);
+      const user: PartialUser | undefined = await authenticateUser(api.context, req);
       return handlers.routes.post(api, user, req.body);
     })
   );

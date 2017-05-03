@@ -4,5 +4,5 @@ import {User as ApiUser} from "../resources/user";
 
 export async function getUser(apiContext: ApiContext, userId: string): Promise<ApiUser | null> {
   const user: DbUser | null = await apiContext.models.user.findOne({where: {id: userId}});
-  return user === null ? null : DbUser.toPlain(user);
+  return user === null ? null : DbUser.toPlain(user, false);
 }

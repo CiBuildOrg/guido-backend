@@ -1,10 +1,10 @@
 import * as kryo from "kryo";
-import {User} from "./user";
+import {PartialUser} from "./partial-user";
 import {Uuid} from "./uuid";
 
 export interface Comment {
   id: Uuid;
-  author: User;
+  author: PartialUser;
   text: string;
 }
 
@@ -15,14 +15,14 @@ export namespace Comment {
    */
   export interface Json {
     id: string;
-    author: User.Json;
+    author: PartialUser.Json;
     text: string;
   }
 
   /**
    * Safe deserializer
    */
-  export const type: kryo.DocumentType<User> = new kryo.DocumentType<User>({
+  export const type: kryo.DocumentType<Comment> = new kryo.DocumentType<Comment>({
     properties: {
       id: {
         type: Uuid.type
@@ -31,7 +31,7 @@ export namespace Comment {
         type: new kryo.Ucs2StringType({maxLength: 500})
       },
       author: {
-        type: User.type
+        type: PartialUser.type
       }
     }
   });

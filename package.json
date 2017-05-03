@@ -51,7 +51,7 @@
     "@types/pg": "^6.1.38",
     "@types/sequelize": "^3.4.43",
     "chai": "^3.5.0",
-    "demurgos-web-build-tools": "0.13.0",
+    "demurgos-web-build-tools": "0.13.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cli": "^1.2.2",
     "pre-commit": "^1.2.2",
