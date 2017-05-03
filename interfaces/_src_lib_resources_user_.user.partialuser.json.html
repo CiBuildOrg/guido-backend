@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Comment | Guido</title>
+	<title>Json | Guido</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,41 +56,49 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_src_lib_resources_comment_.html">&quot;src/lib/resources/comment&quot;</a>
+					<a href="../modules/_src_lib_resources_user_.html">&quot;src/lib/resources/user&quot;</a>
 				</li>
 				<li>
-					<a href="_src_lib_resources_comment_.comment.html">Comment</a>
+					<a href="../modules/_src_lib_resources_user_.user.html">User</a>
+				</li>
+				<li>
+					<a href="../modules/_src_lib_resources_user_.user.partialuser.html">PartialUser</a>
+				</li>
+				<li>
+					<a href="_src_lib_resources_user_.user.partialuser.json.html">Json</a>
 				</li>
 			</ul>
-			<h1>Module Comment</h1>
+			<h1>Interface Json</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Serialized route</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Json</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_src_lib_resources_comment_.comment.json.html" class="tsd-kind-icon">Json</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-module"><a href="_src_lib_resources_comment_.comment.html#author" class="tsd-kind-icon">author</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-module"><a href="_src_lib_resources_comment_.comment.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-module"><a href="_src_lib_resources_comment_.comment.html#text" class="tsd-kind-icon">text</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_src_lib_resources_comment_.comment.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_resources_user_.user.partialuser.json.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_lib_resources_user_.user.partialuser.json.html#username" class="tsd-kind-icon">username</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,53 +106,25 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-module">
-					<a name="author" class="tsd-anchor"></a>
-					<h3>author</h3>
-					<div class="tsd-signature tsd-kind-icon">author<span class="tsd-signature-symbol">:</span> <a href="_src_lib_resources_partial_user_.partialuser.html" class="tsd-signature-type">PartialUser</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/489edb8/src/lib/resources/comment.ts#L7">src/lib/resources/comment.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-module">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
 					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <a href="_src_lib_resources_uuid_.uuid.html" class="tsd-signature-type">Uuid</a></div>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/489edb8/src/lib/resources/comment.ts#L6">src/lib/resources/comment.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/489edb8/src/lib/resources/partial-user.ts#L14">src/lib/resources/partial-user.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-module">
-					<a name="text" class="tsd-anchor"></a>
-					<h3>text</h3>
-					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="username" class="tsd-anchor"></a>
+					<h3>username</h3>
+					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/489edb8/src/lib/resources/comment.ts#L8">src/lib/resources/comment.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/489edb8/src/lib/resources/partial-user.ts#L15">src/lib/resources/partial-user.ts:15</a></li>
 						</ul>
 					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../classes/_node_modules_kryo_dist_lib_es2015_lib_types_document_d_.documenttype.html" class="tsd-signature-type">DocumentType</a><span class="tsd-signature-symbol">&lt;</span><a href="_src_lib_resources_comment_.comment.html" class="tsd-signature-type">Comment</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new kryo.DocumentType&lt;Comment&gt;({properties: {id: {type: Uuid.type},text: {type: new kryo.Ucs2StringType({maxLength: 500})},author: {type: PartialUser.type}}})</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/o10if/guido-backend/blob/489edb8/src/lib/resources/comment.ts#L25">src/lib/resources/comment.ts:25</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Safe deserializer</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -155,10 +135,15 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_src_lib_resources_comment_.html">"src/lib/resources/comment"</a>
+						<a href="../modules/_src_lib_resources_user_.html">"src/lib/resources/user"</a>
 						<ul>
 							<li class="current tsd-kind-module tsd-parent-kind-external-module">
-								<a href="_src_lib_resources_comment_.comment.html">Comment</a>
+								<a href="../modules/_src_lib_resources_user_.user.html">User</a>
+								<ul>
+									<li class="current tsd-kind-module tsd-parent-kind-module">
+										<a href="../modules/_src_lib_resources_user_.user.partialuser.html">Partial<wbr>User</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -166,20 +151,23 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_src_lib_resources_comment_.comment.json.html" class="tsd-kind-icon">Json</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_lib_resources_user_.user.partialuser.json.html" class="tsd-kind-icon">Json</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_resources_user_.user.partialuser.json.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_lib_resources_user_.user.partialuser.json.html#username" class="tsd-kind-icon">username</a>
+							</li>
+						</ul>
 					</li>
-					<li class=" tsd-kind-property tsd-parent-kind-module">
-						<a href="_src_lib_resources_comment_.comment.html#author" class="tsd-kind-icon">author</a>
-					</li>
-					<li class=" tsd-kind-property tsd-parent-kind-module">
-						<a href="_src_lib_resources_comment_.comment.html#id" class="tsd-kind-icon">id</a>
-					</li>
-					<li class=" tsd-kind-property tsd-parent-kind-module">
-						<a href="_src_lib_resources_comment_.comment.html#text" class="tsd-kind-icon">text</a>
-					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="_src_lib_resources_comment_.comment.html#type" class="tsd-kind-icon">type</a>
+						<a href="../modules/_src_lib_resources_user_.user.partialuser.html#type" class="tsd-kind-icon">type</a>
 					</li>
 				</ul>
 			</nav>
