@@ -58,13 +58,15 @@ export async function populateDb(models: Models): Promise<void> {
     {latitude: 45.75696934244999, longitude: 4.832096099853516}
   ];
 
+  let i: number = 0;
   for (const coordinate of coordinates) {
     const wp: Waypoint = await models.waypoint.create({
       id: uuid4(),
       latitude: coordinate.latitude,
       longitude: coordinate.longitude,
       note: "",
-      duration: 1
+      duration: 1,
+      order: i++
     });
     await route.addWaypoints(wp);
   }

@@ -10,6 +10,7 @@ export interface Waypoint {
   longitude: number;
   note: string;
   duration: number;
+  order: number;
 }
 
 export type WaypointModel = Sequelize.Model<Waypoint, any>;
@@ -24,7 +25,8 @@ export function defineWaypointModel(db: Sequelize.Sequelize): WaypointModel {
     latitude: Sequelize.DOUBLE,
     longitude: Sequelize.DOUBLE,
     note: Sequelize.STRING,
-    duration: Sequelize.INTEGER
+    duration: Sequelize.INTEGER,
+    order: Sequelize.INTEGER
   });
 }
 
@@ -39,7 +41,7 @@ export async function toPlainWaypoint(waypoint: Waypoint): Promise<ApiWaypoint> 
 }
 
 export async function toPlainWaypoints(waypoints: Waypoint[]): Promise<ApiWaypoint[]> {
-  return Promise.all(waypoints.map(toPlainWaypoint));
+  return Promise.all(waypoints.sort((a, b) => a.order - b.order).map(toPlainWaypoint));
 }
 
 /* tslint:disable-next-line:no-namespace */
